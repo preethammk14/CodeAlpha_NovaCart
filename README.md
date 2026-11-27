@@ -87,20 +87,20 @@ Developed as part of the CodeAlpha Internship Program.
 
 1. Homepage
 
-"View NovaCart Homepage" (screenshots/Homepage%20screenshot.png)
+[View NovaCart Homepage](screenshots/Homepage%20screenshot.png)
 
 2. Product Catalogue
 
-"View Product Catalogue" (screenshots/Product%20catalogue%20screenshot.png)
+[View Product Catalogue](screenshots/Product%20catalogue%20screenshot.png)
 
 3. Order Tracking
 
-"View Order Tracking" (screenshots/Order%20tracking%20Screenshot.png)
+[View Order Tracking](screenshots/Order%20tracking%20Screenshot.png)
 
 4. Checkout Page
 
-"View Checkout Page" (screenshots/checkout%20screenshot.png)
+[View Checkout Page](screenshots/checkout%20screenshot.png)
 
 5. Admin and Customer Login
 
-"View Admin and Customer Login" (screenshots/Admin%20and%20Customer%20login%20Screenshot.png)
+[View Admin and Customer Login](screenshots/Admin%20and%20Customer%20login%20Screenshot.png)
