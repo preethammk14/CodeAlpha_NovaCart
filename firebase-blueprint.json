@@ -1,0 +1,283 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "Catalog product item available in the NovaCart marketplace.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "title": { "type": "string", "minLength": 2, "maxLength": 140 },
+        "brand": { "type": "string", "minLength": 1, "maxLength": 60 },
+        "category": { "type": "string", "enum": ["Electronics", "Fashion", "Home", "Beauty", "Accessories", "Sports"] },
+        "subCategory": { "type": "string", "minLength": 1, "maxLength": 60 },
+        "description": { "type": "string", "minLength": 10, "maxLength": 1200 },
+        "price": { "type": "number" },
+        "originalPrice": { "type": "number" },
+        "discountPercent": { "type": "integer" },
+        "rating": { "type": "number" },
+        "reviewCount": { "type": "integer" },
+        "stock": { "type": "integer" },
+        "imageUrl": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "gallery": { "type": "array" },
+        "featured": { "type": "boolean" },
+        "bestSeller": { "type": "boolean" },
+        "specialOffer": { "type": "boolean" },
+        "isNew": { "type": "boolean" },
+        "createdOrder": { "type": "integer" },
+        "specs": { "type": "array" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "id", "title", "brand", "category", "description",
+        "price", "originalPrice", "discountPercent", "rating",
+        "reviewCount", "stock", "imageUrl", "featured",
+        "bestSeller", "specialOffer", "specs", "createdAt", "updatedAt"
+      ]
+    },
+    "ProductReview": {
+      "title": "ProductReview",
+      "description": "Verified customer review for a NovaCart product.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "productId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "userId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "authorName": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "rating": { "type": "integer" },
+        "title": { "type": "string", "minLength": 2, "maxLength": 120 },
+        "comment": { "type": "string", "minLength": 5, "maxLength": 800 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "productId", "userId", "authorName", "rating", "title", "comment", "createdAt"]
+    },
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Non-PII user display profile and immutable role.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "displayName": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "role": { "type": "string", "enum": ["customer", "admin"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "displayName", "role", "createdAt", "updatedAt"]
+    },
+    "UserPrivateInfo": {
+      "title": "UserPrivateInfo",
+      "description": "Isolated PII document containing email, phone, and shipping address.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "email": { "type": "string", "minLength": 3, "maxLength": 200 },
+        "phone": { "type": "string", "maxLength": 24 },
+        "street": { "type": "string", "maxLength": 240 },
+        "city": { "type": "string", "maxLength": 80 },
+        "state": { "type": "string", "maxLength": 80 },
+        "postalCode": { "type": "string", "maxLength": 20 },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "phone", "street", "city", "state", "postalCode", "updatedAt"]
+    },
+    "UserAddress": {
+      "title": "UserAddress",
+      "description": "Saved customer delivery address entry.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "label": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "recipientName": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "phone": { "type": "string", "minLength": 6, "maxLength": 24 },
+        "street": { "type": "string", "minLength": 3, "maxLength": 240 },
+        "city": { "type": "string", "minLength": 2, "maxLength": 80 },
+        "state": { "type": "string", "minLength": 2, "maxLength": 80 },
+        "postalCode": { "type": "string", "minLength": 4, "maxLength": 20 },
+        "isDefault": { "type": "boolean" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "label", "recipientName", "phone", "street", "city", "state", "postalCode", "isDefault", "updatedAt"]
+    },
+    "UserCart": {
+      "title": "UserCart",
+      "description": "Persistent shopping cart items for an authenticated user.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "items": { "type": "array" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "items", "updatedAt"]
+    },
+    "UserWishlist": {
+      "title": "UserWishlist",
+      "description": "Persistent wishlist product IDs for an authenticated user.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "productIds": { "type": "array" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "productIds", "updatedAt"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Customer purchase order with line items, shipping address, payment verification metadata, and 6-step status.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "orderNumber": { "type": "string", "minLength": 4, "maxLength": 32 },
+        "userId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "customerName": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "customerEmail": { "type": "string", "minLength": 3, "maxLength": 200 },
+        "customerPhone": { "type": "string", "minLength": 6, "maxLength": 24 },
+        "shippingAddress": { "type": "object" },
+        "paymentMethod": { "type": "string", "enum": ["cod", "upi", "gpay", "phonepe", "paytm", "netbanking", "debit_card", "credit_card"] },
+        "paymentStatus": { "type": "string", "enum": ["pay_on_delivery", "paid", "pending_verification", "failed"] },
+        "paymentGateway": { "type": "string", "enum": ["cod", "razorpay"] },
+        "razorpayOrderId": { "type": "string", "maxLength": 128 },
+        "razorpayPaymentId": { "type": "string", "maxLength": 128 },
+        "estimatedDelivery": { "type": "string", "maxLength": 80 },
+        "promoCode": { "type": "string", "maxLength": 32 },
+        "items": { "type": "array" },
+        "subtotal": { "type": "number" },
+        "shippingFee": { "type": "number" },
+        "discount": { "type": "number" },
+        "total": { "type": "number" },
+        "status": { "type": "string", "enum": ["pending", "confirmed", "processing", "shipped", "out_for_delivery", "delivered", "cancelled"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "id", "orderNumber", "userId", "customerName", "customerEmail",
+        "customerPhone", "shippingAddress", "paymentMethod", "items",
+        "subtotal", "shippingFee", "discount", "total", "status",
+        "createdAt", "updatedAt"
+      ]
+    },
+    "NewsletterSubscriber": {
+      "title": "NewsletterSubscriber",
+      "description": "Email subscriber for NovaCart seasonal drops and offers.",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "minLength": 5, "maxLength": 200 },
+        "subscribedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["email", "subscribedAt"]
+    },
+    "AdminRecord": {
+      "title": "AdminRecord",
+      "description": "Authoritative admin membership record.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "email": { "type": "string", "minLength": 3, "maxLength": 200 },
+        "addedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "addedAt"]
+    },
+    "Offer": {
+      "title": "Offer",
+      "description": "Promotional discount offer or coupon code managed by verified admins.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 2, "maxLength": 32, "pattern": "^[A-Z0-9_\\-]+$" },
+        "code": { "type": "string", "minLength": 2, "maxLength": 32, "pattern": "^[A-Z0-9_\\-]+$" },
+        "title": { "type": "string", "minLength": 2, "maxLength": 120 },
+        "description": { "type": "string", "minLength": 4, "maxLength": 500 },
+        "discountType": { "type": "string", "enum": ["percentage", "fixed", "free_shipping"] },
+        "discountValue": { "type": "number" },
+        "maxDiscount": { "type": "number" },
+        "minOrderAmount": { "type": "number" },
+        "oneTimeUse": { "type": "boolean" },
+        "status": { "type": "string", "enum": ["Active", "Expired", "Cancelled"] },
+        "expiresAt": { "type": "string", "maxLength": 40 },
+        "createdBy": { "type": "string", "maxLength": 200 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "id", "code", "title", "description", "discountType", "discountValue",
+        "maxDiscount", "minOrderAmount", "oneTimeUse", "status", "createdAt", "updatedAt"
+      ]
+    },
+    "OfferRedemption": {
+      "title": "OfferRedemption",
+      "description": "Customer offer booking and coupon redemption linked to an order.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "offerId": { "type": "string", "minLength": 2, "maxLength": 32, "pattern": "^[A-Z0-9_\\-]+$" },
+        "offerCode": { "type": "string", "minLength": 2, "maxLength": 32 },
+        "offerTitle": { "type": "string", "minLength": 2, "maxLength": 120 },
+        "discountType": { "type": "string", "enum": ["percentage", "fixed", "free_shipping"] },
+        "discountValue": { "type": "number" },
+        "discountApplied": { "type": "number" },
+        "userId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "customerName": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "customerEmail": { "type": "string", "minLength": 3, "maxLength": 200 },
+        "orderId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "orderNumber": { "type": "string", "minLength": 4, "maxLength": 32 },
+        "orderTotal": { "type": "number" },
+        "status": { "type": "string", "enum": ["Redeemed", "Cancelled"] },
+        "redeemedAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "id", "offerId", "offerCode", "offerTitle", "discountType", "discountValue",
+        "discountApplied", "userId", "customerName", "customerEmail",
+        "orderId", "orderNumber", "orderTotal", "status", "redeemedAt", "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/products/{productId}": {
+      "schema": { "$ref": "#/entities/Product" },
+      "description": "Publicly readable product catalog; writes restricted to admins or verified buyer stock decrements."
+    },
+    "/productReviews/{reviewId}": {
+      "schema": { "$ref": "#/entities/ProductReview" },
+      "description": "Publicly readable verified customer product reviews."
+    },
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "User display profile; isolated to owner or admin."
+    },
+    "/users/{userId}/private/{docId}": {
+      "schema": { "$ref": "#/entities/UserPrivateInfo" },
+      "description": "PII-isolated private contact and address data."
+    },
+    "/users/{userId}/addresses/{addressId}": {
+      "schema": { "$ref": "#/entities/UserAddress" },
+      "description": "Customer saved delivery addresses; accessible only to the verified owning user or admin."
+    },
+    "/carts/{userId}": {
+      "schema": { "$ref": "#/entities/UserCart" },
+      "description": "Persistent top-level shopping cart keyed by userId."
+    },
+    "/wishlists/{userId}": {
+      "schema": { "$ref": "#/entities/UserWishlist" },
+      "description": "Persistent top-level wishlist keyed by userId."
+    },
+    "/orders/{orderId}": {
+      "schema": { "$ref": "#/entities/Order" },
+      "description": "Private customer orders; accessible only to the verified owning user or admin."
+    },
+    "/newsletter/{subscriberId}": {
+      "schema": { "$ref": "#/entities/NewsletterSubscriber" },
+      "description": "Newsletter subscription records."
+    },
+    "/admins/{adminId}": {
+      "schema": { "$ref": "#/entities/AdminRecord" },
+      "description": "Authoritative admin UID registry."
+    },
+    "/offers/{offerId}": {
+      "schema": { "$ref": "#/entities/Offer" },
+      "description": "Promotional discount offers; publicly readable, writable only by verified admins."
+    },
+    "/offerRedemptions/{redemptionId}": {
+      "schema": { "$ref": "#/entities/OfferRedemption" },
+      "description": "Customer offer redemptions and bookings; isolated to verified owner or admin."
+    }
+  }
+}

@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <radialGradient id="studioBg" cx="50%" cy="42%" r="65%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="55%" stop-color="#FAF8F5"/>
+      <stop offset="100%" stop-color="#ECE6DC"/>
+    </radialGradient>
+    <linearGradient id="floorGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F1ECE4" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#E2DAD0" stop-opacity="0.7"/>
+    </linearGradient>
+    <filter id="castShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+    <filter id="softShadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="14" stdDeviation="12" flood-color="#141416" flood-opacity="0.16"/>
+    </filter>
+    <linearGradient id="metalSilver" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5F5F7"/>
+      <stop offset="35%" stop-color="#C8C9CE"/>
+      <stop offset="70%" stop-color="#8B8D94"/>
+      <stop offset="100%" stop-color="#E2E3E8"/>
+    </linearGradient>
+    <linearGradient id="darkCharcoal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#35363B"/>
+      <stop offset="50%" stop-color="#1E1E22"/>
+      <stop offset="100%" stop-color="#101012"/>
+    </linearGradient>
+    <linearGradient id="warmBrass" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E9C77B"/>
+      <stop offset="48%" stop-color="#C59843"/>
+      <stop offset="100%" stop-color="#8E6723"/>
+    </linearGradient>
+    <linearGradient id="cognacLeather" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A65E32"/>
+      <stop offset="50%" stop-color="#834420"/>
+      <stop offset="100%" stop-color="#5B2D12"/>
+    </linearGradient>
+    <linearGradient id="teakWood" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#B97B45"/>
+      <stop offset="35%" stop-color="#9A5D2E"/>
+      <stop offset="70%" stop-color="#814B22"/>
+      <stop offset="100%" stop-color="#A66A38"/>
+    </linearGradient>
+    <linearGradient id="amberGlass" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D97A28" stop-opacity="0.92"/>
+      <stop offset="55%" stop-color="#9A4812" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#592607"/>
+    </linearGradient>
+    <linearGradient id="matteCream" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="60%" stop-color="#F2ECE2"/>
+      <stop offset="100%" stop-color="#DFD7CA"/>
+    </linearGradient>
+    <linearGradient id="orangeAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FB923C"/>
+      <stop offset="55%" stop-color="#F97316"/>
+      <stop offset="100%" stop-color="#C2410C"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#studioBg)"/>
+  <rect y="430" width="800" height="170" fill="url(#floorGrad)"/>
+  
+    <ellipse cx="400" cy="472" rx="235" ry="24" fill="#141416" opacity="0.18" filter="url(#castShadow)"/>
+    <g filter="url(#softShadow)">
+      <!-- Back oatmeal cushion -->
+      <path d="M190 155 Q340 135 490 155 Q515 290 490 425 Q340 445 190 425 Q165 290 190 155 Z" fill="#EAE3D5" stroke="#D3C9B8" stroke-width="2"/>
+      <path d="M198 165 Q340 148 482 165" fill="none" stroke="#F8F5EF" stroke-width="3" opacity="0.7"/>
+      <!-- Front terracotta cushion angled -->
+      <g transform="translate(80, 42) rotate(6 400 320)">
+        <path d="M240 175 Q385 155 530 175 Q555 305 530 435 Q385 455 240 435 Q215 305 240 175 Z" fill="url(#orangeAccent)"/>
+        <path d="M248 183 Q385 166 522 183 Q544 305 522 427 Q385 444 248 427 Q226 305 248 183 Z" fill="none" stroke="#FDBA74" stroke-width="2" opacity="0.45"/>
+        <!-- subtle flax weave lines -->
+        <line x1="290" y1="220" x2="480" y2="220" stroke="#9A3412" stroke-width="1" opacity="0.15"/>
+        <line x1="280" y1="305" x2="495" y2="305" stroke="#9A3412" stroke-width="1" opacity="0.15"/>
+        <line x1="290" y1="385" x2="480" y2="385" stroke="#9A3412" stroke-width="1" opacity="0.15"/>
+      </g>
+    </g>
+  
+</svg>

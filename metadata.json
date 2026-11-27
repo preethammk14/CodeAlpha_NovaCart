@@ -1,0 +1,6 @@
+{
+  "name": "NovaCart",
+  "description": "Everything you love. One place. Curated modern e-commerce marketplace across electronics, fashion, home, beauty, accessories, and sports.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
